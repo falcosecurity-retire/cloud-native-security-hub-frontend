@@ -1,4 +1,4 @@
-# Cloud Native Visibility Hub - Frontend
+# Cloud Native Security Hub - Frontend
 
 ## Build Setup
 
