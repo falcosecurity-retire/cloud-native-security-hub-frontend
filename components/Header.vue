@@ -7,7 +7,7 @@
             Cloud Native Security Hub
           </h1>
         </b-navbar-brand>
-        <b-navbar-nav>
+        <b-navbar-nav class="d-none d-sm-block">
           <b-nav-form v-if="!hero" class="searchSmallForm">
             <Search class="searchSmall" size="sm" />
           </b-nav-form>
@@ -19,12 +19,12 @@
     </b-navbar>
     <b-container v-if="hero" tag="section" class="hero">
       <b-row class="heroContent" align-v="end">
-        <b-col>
+        <b-col class="mb-5" sm="12" md="6">
           <h2 class="title">
             Discover and share our awesome security tools
           </h2>
         </b-col>
-        <b-col>
+        <b-col sm="12" md="6">
           <Search autofocus />
         </b-col>
       </b-row>
@@ -58,8 +58,6 @@ export default {
     }
     .hero {
       color: #eef3f3;
-      padding-left: 0px;
-      padding-right: 0px;
       .heroContent {
         padding-top: 3rem;
         padding-bottom: 6rem;

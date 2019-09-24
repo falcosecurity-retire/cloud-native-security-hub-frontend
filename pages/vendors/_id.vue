@@ -3,25 +3,29 @@
     <Header />
     <b-container class="content">
       <b-row>
-        <markdown :content="vendor.description" />
+        <b-col>
+          <markdown :content="vendor.description" />
+        </b-col>
       </b-row>
       <b-row tag="section" class="components">
-        <h2 class="title w-100">
-          Available security resources
-        </h2>
-        <transition-group name="zoom" tag="b-row" appear>
-          <b-col
-            v-for="component in components"
-            :key="component.id"
-            :component="component"
-            xs="12"
-            sm="6"
-            md="4"
-            lg="3"
-          >
-            <ComponentCard :component="component" />
-          </b-col>
-        </transition-group>
+        <b-col>
+          <h2 class="title w-100">
+            Available security resources
+          </h2>
+          <transition-group name="zoom" tag="b-row" appear>
+            <b-col
+              v-for="component in components"
+              :key="component.id"
+              :component="component"
+              xs="12"
+              sm="6"
+              md="4"
+              lg="3"
+            >
+              <ComponentCard :component="component" />
+            </b-col>
+          </transition-group>
+        </b-col>
       </b-row>
     </b-container>
     <Footer />

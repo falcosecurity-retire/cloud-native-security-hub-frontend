@@ -3,10 +3,10 @@
     <Header />
     <b-container class="content">
       <b-row>
-        <b-col cols="8">
+        <b-col lg="8" sm="12">
           <markdown :content="component.description" />
         </b-col>
-        <b-col tag="aside" cols="4">
+        <b-col tag="aside" lg="4" sm="12">
           <div class="box">
             <h4 class="title">
               Installing
