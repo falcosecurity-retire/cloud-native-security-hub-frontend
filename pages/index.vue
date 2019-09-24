@@ -25,7 +25,7 @@
         <h2 class="title">
           Latest Components
         </h2>
-        <b-col md="3" lg="12" class="filter-panel">
+        <b-col sm="12" md="3" class="filter-panel">
           <section class="filter-group categories bg-light">
             <h3 class="title">
               Categories
@@ -45,7 +45,7 @@
             </b-btn-group>
           </section>
         </b-col>
-        <b-col md="9" lg="12" tag="section" class="components">
+        <b-col sm="12" md="9" tag="section" class="components">
           <transition-group name="zoom" tag="b-row" appear>
             <b-col
               v-for="component in components"
