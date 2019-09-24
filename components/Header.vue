@@ -11,7 +11,7 @@
           <b-nav-form v-if="!hero" class="searchSmallForm">
             <Search class="searchSmall" size="sm" />
           </b-nav-form>
-          <b-nav-item href="https://github.com/nestorsalceda/cloud-native-visibility-hub-resources" target="_blank">
+          <b-nav-item class="contribute" href="https://github.com/nestorsalceda/cloud-native-visibility-hub-resources" target="_blank">
             Contribute
           </b-nav-item>
         </b-navbar-nav>

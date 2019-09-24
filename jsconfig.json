@@ -8,5 +8,14 @@
       "@@/*": ["./*"]
     }
   },
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "exclude": ["node_modules", ".nuxt", "dist", "coverage"],
+  "include": [
+    "./infrastructure/**/*",
+    "./components/**/*",
+    "./pages/**/*",
+    "./assets/**/*",
+    "./store/**/*",
+    "./node_modules/cypress",
+    "test/e2e/support/**/*.js"
+  ]
 }

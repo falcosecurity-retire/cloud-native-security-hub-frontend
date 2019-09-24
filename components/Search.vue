@@ -158,12 +158,6 @@ export default {
       z-index: 1;
       width: 100%;
       color: #415564;
-      .result {
-        .type {
-        }
-        & .active {
-        }
-      }
     }
   }
 </style>
