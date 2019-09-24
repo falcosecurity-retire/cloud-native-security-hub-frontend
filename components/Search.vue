@@ -4,14 +4,17 @@
       type="search"
       placeholder="Search"
       class="input-search"
+      ref="inputSearch"
       :autofocus="autofocus"
       :size="size"
       @input="searchChange"
       @keydown.down="searchDown"
+      @keydown.tab="searchDown"
       @keydown.up="searchUp"
-      @keydown.enter="selectSearch"
-      @keydown.escape="clearSearch"
+      @keydown.shift.tab="searchUp"
+      @keydown.enter.prevent="selectSearch"
       @keydown.right="selectSearch"
+      @keydown.escape="clearSearch"
     />
     <div class="searchtext">
       <span class="searched">{{ searchText }}</span>
@@ -69,21 +72,26 @@ export default {
       this.selectedResult = -1
       this.searchForResults()
     },
-    searchDown () {
+    searchDown (event) {
+      if (!this.searchText) { return }
+      event.preventDefault()
       this.selectedResult = Math.min(this.selectedResult + 1, this.searchResults.length - 1)
       this.updateSearchTextWithResult(this.selectedResult)
     },
     searchUp () {
+      if (!this.searchText) { return }
       this.selectedResult = Math.max(0, this.selectedResult - 1)
       this.updateSearchTextWithResult(this.selectedResult)
     },
     clearSearch () {
       this.selectedResult = -1
       this.searchResults = []
-      // this.searchInputRef.blur()
-      this.searchForResults()
+      this.searchText = ''
+      this.$refs.inputSearch.blur()
     },
     selectSearch () {
+      if (!this.searchText) { return }
+      event.preventDefault()
       if (this.selectedResult >= 0 && this.searchResults[this.selectedResult]) {
         const result = this.searchResults[this.selectedResult]
         this.$router.push({ name: `${result.type}-id`, params: { id: result.id } })
