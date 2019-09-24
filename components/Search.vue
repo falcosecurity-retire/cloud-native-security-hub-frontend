@@ -1,17 +1,17 @@
 <template>
   <b-form-group
-    class="search"
     id="search"
+    class="search"
     label-sr-only
     label="Search"
     label-for="inputSearch"
   >
     <b-input
+      id="inputSearch"
+      ref="inputSearch"
       type="search"
       placeholder="Search"
       class="input-search"
-      ref="inputSearch"
-      id="inputSearch"
       :autofocus="autofocus"
       :size="size"
       @input="searchChange"
