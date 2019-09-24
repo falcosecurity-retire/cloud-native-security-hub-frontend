@@ -1,10 +1,17 @@
 <template>
-  <div class="search">
+  <b-form-group
+    class="search"
+    id="search"
+    label-sr-only
+    label="Search"
+    label-for="inputSearch"
+  >
     <b-input
       type="search"
       placeholder="Search"
       class="input-search"
       ref="inputSearch"
+      id="inputSearch"
       :autofocus="autofocus"
       :size="size"
       @input="searchChange"
@@ -34,7 +41,7 @@
         </b-badge>
       </b-list-group-item>
     </b-list-group>
-  </div>
+  </b-form-group>
 </template>
 
 <script>

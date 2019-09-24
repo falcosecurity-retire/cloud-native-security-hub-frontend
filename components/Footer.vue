@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    Curated with love by <b-link target="_blank" href="https://sysdig.com/">
+    Curated with love by <b-link class="link" target="_blank" href="https://sysdig.com/">
       Sysdig
     </b-link>
   </footer>
@@ -14,5 +14,8 @@
     background-color: #253746;
     color: #eef3f3;
     text-align: center;
+    .link {
+      color: #eef3f3;
+    }
   }
 </style>

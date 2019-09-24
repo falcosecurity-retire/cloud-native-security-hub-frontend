@@ -122,9 +122,12 @@ export default {
   box-shadow: 1px 1px 10px rgba(0,0,0,.07);
   background-color: #FAFBFD;
   margin-bottom: 1rem;
+  a {
+    color: darkblue;
+  }
   .title {
     margin: 1rem 0px 0px 0px;
-    color: #B6B6B6;
+    color: #2F3F50;
     padding-bottom: 0.2rem;
     border-bottom: 1px solid #eee;
   }
