@@ -1,0 +1,18 @@
+[
+  {
+    "id": "VYEEMIESBBKECZMFYEKY",
+    "kind": "Vendor",
+    "name": "Apache",
+    "description": "# Apache Software Foundation\n",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Apache_Software_Foundation_Logo_%282016%29.svg/2560px-Apache_Software_Foundation_Logo_%282016%29.svg.png",
+    "website": "https://apache.org/"
+  },
+  {
+    "id": "WBOJJ6YNJCH7YX2MXMRB",
+    "kind": "Vendor",
+    "name": "Mongo",
+    "description": "# MongoDB Inc.\n",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/thumb/4/45/MongoDB-Logo.svg/640px-MongoDB-Logo.svg.png",
+    "website": "https://mongodb.com/"
+  }
+]

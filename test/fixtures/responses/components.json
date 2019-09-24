@@ -1,0 +1,60 @@
+[
+  {
+    "id": "C2CH7QOU44ZJ2HC7QJJT",
+    "apiVersion": "v1",
+    "kind": "FalcoRules",
+    "vendor": "Apache",
+    "name": "Apache",
+    "description": "# Apache Falco Rules\nThe Apache HTTP Server, colloquially called Apache (/əˈpætʃi/ ə-PATCH-ee),\nis free and open-source cross-platform web server software, released under the\nterms of Apache License 2.0. Apache is developed and maintained by an open community\nof developers under the auspices of the Apache Software Foundation.\n\n## Rules\n\n### Unexpected inbound tcp connection apache\n\nDetects inbound network connections to apache on unexpected ports\n\n### Unexpected spawned process apache\n\nDetects an unexpected process spawned in the apache container\n\n### Unexpected file access readwrite for apache\n\nDetects an unexpected file accessed in readwrite mode for apache\n",
+    "keywords": [
+      "web"
+    ],
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Apache_HTTP_server_logo_%282016%29.svg/300px-Apache_HTTP_server_logo_%282016%29.svg.png",
+    "website": "",
+    "maintainers": [
+      {
+        "name": "nestorsalceda",
+        "email": "nestor.salceda@sysdig.com"
+      },
+      {
+        "name": "fedebarcelona",
+        "email": "fede.barcelona@sysdig.com"
+      }
+    ],
+    "rules": [
+      {
+        "raw": "- macro: apache_consider_syscalls\n  condition: (evt.num \u003c 0)\n\n- macro: app_apache\n  condition: container and container.image contains \"apache\"\n\n# Restricting listening ports to selected set\n\n- list: apache_allowed_inbound_ports_tcp\n  items: [80, 443]\n\n- rule: Unexpected inbound tcp connection apache\n  desc: Detect inbound traffic to apache using tcp on a port outside of expected set\n  condition: inbound and evt.rawres \u003e= 0 and not fd.sport in (apache_allowed_inbound_ports_tcp) and app_apache\n  output: Inbound network connection to apache on unexpected port (command=%proc.cmdline pid=%proc.pid connection=%fd.name sport=%fd.sport user=%user.name %container.info image=%container.image)\n  priority: NOTICE\n\n# Restricting spawned processes to selected set\n\n- list: apache_allowed_processes\n  items: [\"apache2\", \"basename\", \"grep\", \"app-entrypoint.\", \"node\", \"sleep\", \"dirname\", \"httpd\", \"nami\", \"sh\", \"tini\"]\n\n- rule: Unexpected spawned process apache\n  desc: Detect a process started in a apache container outside of an expected set\n  condition: spawned_process and not proc.name in (apache_allowed_processes) and app_apache\n  output: Unexpected process spawned in apache container (command=%proc.cmdline pid=%proc.pid user=%user.name %container.info image=%container.image)\n  priority: NOTICE\n\n- list: apache_allowed_file_prefixes_readwrite\n  items: [\"/opt\", \"/tmp\", \"/dev/null\"]\n\n- rule: Unexpected file access readwrite for apache\n  desc: Detect an attempt to access a file readwrite other than below an expected list of directories\n  condition: (open_write) and not fd.name pmatch (apache_allowed_file_prefixes_readwrite) and app_apache\n  output: Unexpected file accessed readwrite for apache (command=%proc.cmdline pid=%proc.pid file=%fd.name %container.info image=%container.image)\n  priority: NOTICE"
+      }
+    ],
+    "DashboardID": 0
+  },
+  {
+    "id": "BCR5BR5AWTR5NUAWP724",
+    "apiVersion": "v1",
+    "kind": "FalcoRules",
+    "vendor": "Mongo",
+    "name": "MongoDB",
+    "description": "# MongoDB Falco Rules\nMongoDB is a free and open-source cross-platform document-oriented database program.\nClassified as a NoSQL database program, MongoDB uses JSON-like documents with schemas.\nMongoDB is developed by MongoDB Inc., and is published under a combination of the GNU\nAffero General Public License and the Apache\n\n## Rules\n\n### Unexpected inbound tcp connection mongo\n\nDetects an inbound network connection to mongo on an unexpected port\n\n### Unexpected spawned process mongo\n\nDetects an unexpected process spawned in the mongo container\n\n### Unexpected file access readwrite for mongo\n\nDetects an unexpected file accessed in readwrite mode for mongo\n",
+    "keywords": [
+      "database"
+    ],
+    "icon": "https://upload.wikimedia.org/wikipedia/en/thumb/4/45/MongoDB-Logo.svg/2560px-MongoDB-Logo.svg.png",
+    "website": "",
+    "maintainers": [
+      {
+        "name": "nestorsalceda",
+        "email": "nestor.salceda@sysdig.com"
+      },
+      {
+        "name": "fedebarcelona",
+        "email": "fede.barcelona@sysdig.com"
+      }
+    ],
+    "rules": [
+      {
+        "raw": "- macro: mongo_consider_syscalls\n  condition: (evt.num \u003c 0)\n\n- macro: app_mongo\n  condition: container and container.image contains \"mongo\"\n\n# Restricting listening ports to selected set\n\n- list: mongo_allowed_inbound_ports_tcp\n  items: [27017]\n\n- rule: Unexpected inbound tcp connection mongo\n  desc: Detect inbound traffic to mongo using tcp on a port outside of expected set\n  condition: inbound and evt.rawres \u003e= 0 and not fd.sport in (mongo_allowed_inbound_ports_tcp) and app_mongo and fd.sockfamily = ip\n  output: Inbound network connection to mongo on unexpected port (command=%proc.cmdline pid=%proc.pid connection=%fd.name sport=%fd.sport user=%user.name %container.info image=%container.image)\n  priority: NOTICE\n\n# Restricting spawned processes to selected set\n\n- list: mongo_allowed_processes\n  items: [\"mongod\", \"mongo\", \"ftdc\", \"WTCheck.tThread\" ,\"app-entrypoint.\", \"basename\", \"dirname\", \"getent\", \"gosu\", \"grep\", \"groupadd\", \"nami\", \"node\", \"run.sh\", \"sed\", \"sh\", \"sleep\", \"tini\", \"useradd\", \"which\"]\n\n- rule: Unexpected spawned process mongo\n  desc: Detect a process started in a mongo container outside of an expected set\n  condition: spawned_process and not proc.name in (mongo_allowed_processes) and app_mongo\n  output: Unexpected process spawned in mongo container (command=%proc.cmdline pid=%proc.pid user=%user.name %container.info image=%container.image)\n  priority: NOTICE\n\n- list: mongo_allowed_file_prefixes_readwrite\n  items: [\"/data/db\", \"/etc\", \"/opt\", \"/tmp\", \"/root/.nami\"]\n\n- rule: Unexpected file access readwrite for mongo\n  desc: Detect an attempt to access a file readwrite other than below an expected list of directories\n  condition: (open_write) and not fd.name pmatch (mongo_allowed_file_prefixes_readwrite) and app_mongo\n  output: Unexpected file accessed readwrite for mongo (command=%proc.cmdline pid=%proc.pid file=%fd.name %container.info image=%container.image)\n  priority: NOTICE"
+      }
+    ],
+    "DashboardID": 0
+  }
+]
