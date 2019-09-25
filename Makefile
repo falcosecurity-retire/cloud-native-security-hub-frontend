@@ -1,6 +1,6 @@
 build:
 	npm run build
-	docker build -t gcr.io/mateo-burillo-ns/cnvh-frontend .
+	docker build -t gcr.io/mateo-burillo-ns/securityhub-frontend .
 
 push: build
-	docker push gcr.io/mateo-burillo-ns/cnvh-frontend
+	docker push gcr.io/mateo-burillo-ns/securityhub-frontend
