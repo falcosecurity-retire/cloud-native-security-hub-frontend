@@ -25,6 +25,15 @@ export default {
     bootstrapCSS: false,
     bootstrapVueCSS: false
   },
+  serverMiddleware: [
+    {
+      path: '/health',
+      handler: (req, res, next) => {
+        res.setHeader('Content-Type', 'text/plain')
+        res.end('PASS')
+      }
+    }
+  ],
   pwa: {
     workbox: {
       offlineAnalytics: true,
