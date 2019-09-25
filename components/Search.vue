@@ -14,6 +14,7 @@
       class="input-search"
       :autofocus="autofocus"
       :size="size"
+      :value="searchText"
       @input="searchChange"
       @keydown.down="searchDown"
       @keydown.tab="searchDown"
@@ -21,7 +22,9 @@
       @keydown.shift.tab="searchUp"
       @keydown.enter.prevent="selectSearch"
       @keydown.right="selectSearch"
-      @keydown.escape="clearSearch"
+      @keydown.escape.prevent="clearSearch"
+      @blur="clearSearch"
+      @focus="searchForResults"
     />
     <div class="searchtext">
       <span class="searched">{{ searchText }}</span>
@@ -70,7 +73,8 @@ export default {
       return this.searchSuggestions.length && this.selectedResult === -1 ? this.searchSuggestions[0] : ''
     },
     searchSuggestionsText () {
-      return this.searchSuggestionsFullText.replace(this.searchText, '')
+      const regEx = new RegExp(this.searchText, 'i')
+      return this.searchSuggestionsFullText.replace(regEx, '')
     }
   },
   methods: {
@@ -93,7 +97,6 @@ export default {
     clearSearch () {
       this.selectedResult = -1
       this.searchResults = []
-      this.searchText = ''
       this.$refs.inputSearch.blur()
     },
     selectSearch () {
