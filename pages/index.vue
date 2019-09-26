@@ -62,21 +62,18 @@
         </b-col>
       </b-row>
     </b-container>
-    <Footer />
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import ComponentCard from '@/components/ComponentCard'
 import VendorCard from '@/components/VendorCard'
 
 export default {
   components: {
     Header,
-    Footer,
     ComponentCard,
     VendorCard
   },
@@ -93,9 +90,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .content {
-    min-height: calc(100vh - 60px - 228.8px - 32px); // 100 - footer - header - headerMargin
-  }
   .title {
     text-align: center;
     width: 100%;

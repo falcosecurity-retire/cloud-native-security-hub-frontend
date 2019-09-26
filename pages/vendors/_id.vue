@@ -28,7 +28,6 @@
         </b-col>
       </b-row>
     </b-container>
-    <Footer />
   </div>
 </template>
 
@@ -36,7 +35,6 @@
 import { mapState } from 'vuex'
 import Markdown from '@/components/Markdown'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import ComponentCard from '@/components/ComponentCard'
 import { getCanonicalForVendor } from '@/infrastructure/Canonical'
 
@@ -44,7 +42,6 @@ export default {
   components: {
     Markdown,
     Header,
-    Footer,
     ComponentCard
   },
   head () {
@@ -75,7 +72,6 @@ export default {
 
 <style scoped lang="scss">
 .content {
-  min-height: calc(100vh - 60px - 56px - 32px); // 100 - footer - header - headerMargin
   margin-top: 2rem;
 }
 </style>

@@ -60,7 +60,6 @@
         </b-col>
       </b-row>
     </b-container>
-    <Footer />
   </div>
 </template>
 
@@ -68,14 +67,12 @@
 import { mapState } from 'vuex'
 import Markdown from '@/components/Markdown'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import { getCanonicalForComponent } from '@/infrastructure/Canonical'
 
 export default {
   components: {
     Markdown,
-    Header,
-    Footer
+    Header
   },
   head () {
     return {
@@ -113,7 +110,6 @@ export default {
 <style scoped lang="scss">
 .content {
   margin-top: 2rem;
-  min-height: calc(100vh - 60px - 56px - 32px); // 100 - footer - header - headerMargin
 }
 .box {
   border-radius: 8px;
