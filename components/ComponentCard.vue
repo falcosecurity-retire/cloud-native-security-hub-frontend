@@ -42,7 +42,7 @@ export default {
   }
 }
 .component {
-  height: 230px;
+  height: 250px;
   width: 250px;
   margin-bottom: 1rem !important;
   transition: transform .25s;
