@@ -50,6 +50,12 @@ export default {
 <style scoped lang="scss">
   .header {
     background-image: linear-gradient(to bottom right, #0a1429, #415564);
+    .navbar {
+      .container {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
     .brand {
       font-size: 1.5rem;
       font-family: Roboto;
