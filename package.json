@@ -1,7 +1,7 @@
 {
-  "name": "cloud-native-visibility-hub",
+  "name": "cloud-native-security-hub",
   "version": "1.0.0",
-  "description": "Cloud Native Visibility Hub",
+  "description": "Cloud Native Security Hub",
   "author": "Nacho García",
   "private": true,
   "scripts": {
