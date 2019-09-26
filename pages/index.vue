@@ -2,10 +2,10 @@
   <div>
     <Header hero />
     <b-container class="content">
+      <h2 class="title">
+        Latest Vendors
+      </h2>
       <b-row tag="section" class="vendors" :no-gutters="true">
-        <h2 class="title">
-          Latest Vendors
-        </h2>
         <transition-group name="zoom" tag="b-row" appear>
           <b-col
             v-for="vendor in vendors"
@@ -21,10 +21,10 @@
         </transition-group>
       </b-row>
       <hr>
+      <h2 class="title">
+        Latest Components
+      </h2>
       <b-row>
-        <h2 class="title">
-          Latest Components
-        </h2>
         <b-col sm="12" md="3" class="filter-panel">
           <section class="filter-group categories bg-light">
             <h3 class="title">
@@ -105,7 +105,8 @@ export default {
 
       }
       .title {
-        margin: 1rem 0 0.3rem 0;
+        padding-top: 1rem;
+        margin: 5px 0 0.3rem 0;
         font-family: Roboto;
         font-size: 1rem;
       }

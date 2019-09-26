@@ -44,16 +44,18 @@ export default {
 .component {
   height: 230px;
   width: 250px;
+  margin-bottom: 1rem !important;
   transition: transform .25s;
   &:hover {
     transform: scale(1.05);
   }
   .card-header{
-    padding: 0.5rem 1.25rem;
-    height: 110px;
+    padding: 1.5rem 1.25rem;
+    height: 145px;
 
     .image {
-      max-height: 40px;
+      max-height: 60px;
+      max-width: 210px;
       width: auto;
       height: auto;
       display:block;
