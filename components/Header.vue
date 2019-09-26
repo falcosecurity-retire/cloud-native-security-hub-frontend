@@ -18,7 +18,7 @@
       <b-row class="heroContent" align-v="end">
         <b-col sm="12" md="6">
           <h2 class="title">
-            Discover and share our awesome security tools
+            Share and find the best resources to secure Cloud Native components
           </h2>
         </b-col>
       </b-row>
