@@ -9,7 +9,7 @@ describe('Header', () => {
     wrapper = shallowMount(Header)
 
     expect(wrapper.find('.brand').text()).toEqual('Cloud Native Security Hub')
-    expect(wrapper.find('.contribute').attributes().href).toEqual('https://github.com/nestorsalceda/cloud-native-visibility-hub-resources')
+    expect(wrapper.find('.contribute').attributes().href).toEqual('https://github.com/falcosecurity/cloud-native-security-hub/CONTRIBUTE.md')
     expect(wrapper.find('.contribute').text()).toEqual('Contribute')
     expect(wrapper.find(Search).props()).toEqual({ 'autofocus': undefined, 'size': 'sm' })
   })
@@ -22,7 +22,7 @@ describe('Header', () => {
     })
 
     expect(wrapper.find('.brand').text()).toEqual('Cloud Native Security Hub')
-    expect(wrapper.find('.contribute').attributes().href).toEqual('https://github.com/nestorsalceda/cloud-native-visibility-hub-resources')
+    expect(wrapper.find('.contribute').attributes().href).toEqual('https://github.com/falcosecurity/cloud-native-security-hub/CONTRIBUTE.md')
     expect(wrapper.find('.contribute').text()).toEqual('Contribute')
     expect(wrapper.find('.title').text()).toContain('Discover and share our awesome security tools')
     expect(wrapper.find(Search).props()).toEqual({ 'autofocus': true, 'size': undefined })
