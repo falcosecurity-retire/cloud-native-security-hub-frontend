@@ -37,7 +37,6 @@
     "bootstrap-vue": "^2.0.1",
     "minisearch": "^2.1.1",
     "nuxt": "^2.9.2",
-    "nuxt-healthcheck": "^1.0.1",
     "nuxt-webfontloader": "^1.1.0",
     "showdown": "^1.9.0"
   },
