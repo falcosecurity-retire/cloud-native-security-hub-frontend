@@ -8,9 +8,6 @@
           </h1>
         </b-navbar-brand>
         <b-navbar-nav class="d-none d-sm-block">
-          <b-nav-form v-if="!hero" class="searchSmallForm">
-            <Search class="searchSmall" size="sm" />
-          </b-nav-form>
           <b-nav-item class="contribute" href="https://github.com/falcosecurity/cloud-native-security-hub/CONTRIBUTE.md" target="_blank">
             Contribute
           </b-nav-item>
@@ -19,13 +16,10 @@
     </b-navbar>
     <b-container v-if="hero" tag="section" class="hero">
       <b-row class="heroContent" align-v="end">
-        <b-col class="mb-5" sm="12" md="6">
+        <b-col sm="12" md="6">
           <h2 class="title">
             Discover and share our awesome security tools
           </h2>
-        </b-col>
-        <b-col sm="12" md="6">
-          <Search autofocus />
         </b-col>
       </b-row>
     </b-container>
@@ -33,11 +27,7 @@
 </template>
 
 <script>
-import Search from '@/components/Search'
 export default {
-  components: {
-    Search
-  },
   props: {
     hero: {
       type: Boolean,
