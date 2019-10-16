@@ -8,7 +8,7 @@
           </h1>
         </b-navbar-brand>
         <b-navbar-nav class="d-none d-sm-block">
-          <b-nav-item class="contribute" href="https://github.com/falcosecurity/cloud-native-security-hub/CONTRIBUTE.md" target="_blank">
+          <b-nav-item class="contribute" href="https://github.com/falcosecurity/cloud-native-security-hub/CONTRIBUTING.md" target="_blank">
             Contribute
           </b-nav-item>
         </b-navbar-nav>
