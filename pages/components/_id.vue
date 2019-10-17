@@ -50,8 +50,8 @@
               <h6 class="title">
                 Maintainers
               </h6>
-              <div v-for="maintainer in component.maintainers" :key="maintainer.email" class="maintainer">
-                <b-link :href="`mailto:${maintainer.email}`">
+              <div v-for="maintainer in component.maintainers" :key="maintainer.link" class="maintainer">
+                <b-link :href="`${maintainer.link}`">
                   {{ maintainer.name }}
                 </b-link>
               </div>
