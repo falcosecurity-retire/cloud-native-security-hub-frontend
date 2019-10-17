@@ -2,28 +2,6 @@
   <div>
     <Header hero />
     <b-container class="content">
-      <h2 class="title">
-        Latest Vendors
-      </h2>
-      <b-row tag="section" class="vendors" :no-gutters="true">
-        <transition-group name="zoom" tag="b-row" appear>
-          <b-col
-            v-for="vendor in vendors"
-            :key="vendor.id"
-            :vendor="vendor"
-            xs="12"
-            sm="6"
-            md="4"
-            lg="3"
-          >
-            <VendorCard :vendor="vendor" />
-          </b-col>
-        </transition-group>
-      </b-row>
-      <hr>
-      <h2 class="title">
-        Latest Components
-      </h2>
       <b-row>
         <b-col sm="12" md="3" class="filter-panel">
           <section class="filter-group categories bg-light">
@@ -69,13 +47,11 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 import Header from '@/components/Header'
 import ComponentCard from '@/components/ComponentCard'
-import VendorCard from '@/components/VendorCard'
 
 export default {
   components: {
     Header,
-    ComponentCard,
-    VendorCard
+    ComponentCard
   },
   computed: {
     ...mapState({
@@ -90,6 +66,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .content {
+    margin-top: 2rem;
+  }
   .title {
     text-align: center;
     width: 100%;

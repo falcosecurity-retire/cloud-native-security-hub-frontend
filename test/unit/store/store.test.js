@@ -20,11 +20,10 @@ describe('store', () => {
       commit = jest.fn()
     })
 
-    it('gets components and vendors on init so we have them available for search', async () => {
+    it('gets components on init so we have them available for search', async () => {
       await actions.nuxtServerInit.call(context, { commit }, {})
 
       expect(commit).toHaveBeenCalledWith('components', components)
-      expect(commit).toHaveBeenCalledWith('vendors', vendors)
     })
 
     it('gets a component by ID', async () => {

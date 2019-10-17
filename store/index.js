@@ -1,7 +1,6 @@
 export const state = () => ({
   components: [],
   component: {},
-  vendors: [],
   vendor: {},
   vendorComponents: [],
   selectedCategories: []
@@ -29,9 +28,6 @@ export const mutations = {
   component (state, component) {
     state.component = component
   },
-  vendors (state, vendors) {
-    state.vendors = vendors
-  },
   vendor (state, vendor) {
     state.vendor = vendor
   },
@@ -50,14 +46,11 @@ export const actions = {
   async nuxtServerInit ({ commit, dispatch }, { req }) {
     // we get them in the init instead of the home to have them indexed for search
     const components = await this.$services.contentService.getComponents()
-    const vendors = await this.$services.contentService.getVendors()
-    commit('vendors', vendors)
     commit('components', components)
   },
   initSearchEngine ({ state }) {
     this.$services.searchService.initSearchEngine([
-      ...state.components.map(component => ({ ...component, type: 'components' })),
-      ...state.vendors.map(vendor => ({ ...vendor, type: 'vendors' }))
+      ...state.components.map(component => ({ ...component, type: 'components' }))
     ])
   },
   async getComponent ({ commit }, id) {
