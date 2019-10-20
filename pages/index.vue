@@ -4,7 +4,7 @@
     <b-container class="content">
       <b-row>
         <b-col sm="12" md="3" class="filter-panel">
-          <section class="filter-group categories bg-light">
+          <section class="filter-group categories">
             <h3 class="title">
               Categories
             </h3>
@@ -81,11 +81,15 @@ export default {
         list-style-type: none;
         margin: 0;
         padding: 0;
-
+        .filter {
+          cursor: pointer;
+          &:focus {
+            box-shadow: 0 0 0 1px rgba(216, 217, 219, 0.5)
+          }
+        }
       }
       .title {
-        padding-top: 1rem;
-        margin: 5px 0 0.3rem 0;
+        margin-top: 4px;
         font-family: Roboto;
         font-size: 1rem;
       }

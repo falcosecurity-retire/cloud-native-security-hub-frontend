@@ -43,7 +43,6 @@ export default {
 }
 .component {
   height: 250px;
-  width: 250px;
   margin-bottom: 1rem !important;
   transition: transform .25s;
   &:hover {
@@ -55,7 +54,8 @@ export default {
 
     .image {
       max-height: 60px;
-      max-width: 210px;
+      min-height: 60px;
+      max-width: 100%;
       width: auto;
       height: auto;
       display:block;
