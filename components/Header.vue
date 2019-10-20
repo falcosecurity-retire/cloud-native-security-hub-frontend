@@ -7,7 +7,10 @@
             Cloud Native Security Hub
           </h1>
         </b-navbar-brand>
-        <b-navbar-nav class="d-none d-sm-block">
+        <b-navbar-nav class="d-none d-sm-flex ml-auto">
+          <b-nav-form v-if="!hero" class="searchSmallForm">
+            <Search class="searchSmall" size="sm" />
+          </b-nav-form>
           <b-nav-item class="contribute" href="https://github.com/falcosecurity/cloud-native-security-hub/blob/master/CONTRIBUTING.md" target="_blank">
             Contribute
           </b-nav-item>
@@ -15,11 +18,14 @@
       </b-container>
     </b-navbar>
     <b-container v-if="hero" tag="section" class="hero">
-      <b-row class="heroContent" align-v="end">
+      <b-row class="heroContent" align-v="center">
         <b-col sm="12" md="6">
           <h2 class="title">
             Share and find the best resources to secure Cloud Native components
           </h2>
+        </b-col>
+        <b-col sm="12" md="6">
+          <Search autofocus />
         </b-col>
       </b-row>
     </b-container>
@@ -27,7 +33,12 @@
 </template>
 
 <script>
+import Search from '@/components/Search'
+
 export default {
+  components: {
+    Search
+  },
   props: {
     hero: {
       type: Boolean,
@@ -69,7 +80,6 @@ export default {
   }
   .searchSmallForm {
     width: 220px;
-    margin-right: 2rem;
     position: relative;
     color: #eef3f3;
   }
