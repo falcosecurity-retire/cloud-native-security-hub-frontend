@@ -1,7 +1,7 @@
 <template>
   <b-form-group
     id="search"
-    class="search"
+    class="search my-auto"
     label-sr-only
     label="Search"
     label-for="inputSearch"
@@ -94,7 +94,9 @@ export default {
       this.selectedResult = Math.max(0, this.selectedResult - 1)
       this.updateSearchTextWithResult(this.selectedResult)
     },
-    clearSearch () {
+    clearSearch (event) {
+      const isClickOnResult = event.relatedTarget && event.relatedTarget.className.includes('result')
+      if (isClickOnResult) { return }
       this.selectedResult = -1
       this.searchResults = []
       this.$refs.inputSearch.blur()
@@ -128,9 +130,10 @@ export default {
 <style scoped lang="scss">
   .search {
     position: relative;
+    height: 38px;
     .searchtext {
       position: absolute;
-      z-index: 2;
+      z-index: 1;
       top: 0;
       bottom: 0;
       padding: 6px 12px;
@@ -138,10 +141,11 @@ export default {
       font-size: 0;
       .suggestion {
         font-size: 1rem;
-        z-index: 2;
+        z-index: 1;
         color: rgba(255,255,255,0.5);
       }
       .searched {
+        z-index: 1;
         font-size: 1rem;
       }
     }
@@ -149,7 +153,7 @@ export default {
       position: absolute;
       top: 0;
       bottom: 0;
-      z-index: 1;
+      z-index: 2;
       color: transparent;
       border: 0px solid #e3ebeb;
       border-bottom-width: 1px;
@@ -158,7 +162,7 @@ export default {
     .resultList {
       position: absolute;
       top: 2.4rem;
-      z-index: 1;
+      z-index: 2;
       width: 100%;
       color: #415564;
     }
