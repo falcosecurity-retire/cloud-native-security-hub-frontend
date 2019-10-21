@@ -94,7 +94,8 @@ export default {
     '@nuxtjs/pwa',
     ['@nuxtjs/dotenv', { systemvars: true }],
     '@nuxtjs/sitemap',
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    '@nuxtjs/google-analytics'
   ],
   sitemap: {
     hostname: '',
