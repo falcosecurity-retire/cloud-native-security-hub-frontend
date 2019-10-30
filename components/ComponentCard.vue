@@ -6,7 +6,8 @@
         <div class="name">
           {{ component.name }}
         </div>
-        <b-link v-if="component.vendor && component.vendor.name" :to="`/vendors/${component.vendor.id}`" class="link">
+        <!-- Vendors currently deactivated from the front-end -->
+        <b-link v-if="component.vendor && component.vendor.name && false" :to="`/vendors/${component.vendor.id}`" class="link">
           <div class="vendor">
             by <span class="vendorName">{{ component.vendor.name }}</span>
           </div>
