@@ -2,6 +2,9 @@
   <div>
     <Header />
     <b-container class="content">
+      <b-modal id="manual-install-modal" :title="component.name" ok-only size="xl" :lazy="true">
+        <prism language="yaml" :plugins="['show-language', 'copy-to-clipboard']" :code="componentCustomRulesContent" />
+      </b-modal>
       <b-row>
         <b-col lg="8" sm="12">
           <markdown :content="component.description" />
@@ -22,6 +25,12 @@
               :value="installInstructions"
               @click="copy(installInstructions)"
             />
+            <h6 class="title">
+              Manual install
+            </h6>
+            <b-button v-b-modal.manual-install-modal variant="info" @click="getComponentCustomRulesContent">
+              YAML
+            </b-button>
           </div>
           <div class="box">
             <div v-if="component.website" class="website">
@@ -65,14 +74,17 @@
 
 <script>
 import { mapState } from 'vuex'
+import Prism from 'vue-prismjs'
 import Markdown from '@/components/Markdown'
 import Header from '@/components/Header'
 import { getCanonicalForComponent } from '@/infrastructure/Canonical'
+import 'prismjs/themes/prism-tomorrow.css'
 
 export default {
   components: {
     Markdown,
-    Header
+    Header,
+    Prism
   },
   head () {
     return {
@@ -90,10 +102,12 @@ export default {
   },
   computed: {
     ...mapState({
-      component: state => state.component
+      component: state => state.component,
+      componentCustomRulesURL: state => state.componentCustomRulesURL,
+      componentCustomRulesContent: state => state.componentCustomRulesContent
     }),
     installInstructions () {
-      return `helm upgrade falco -f ${process.env.API_URL}/resources/${this.component.id}/custom-rules.yaml stable/falco`
+      return `helm upgrade falco -f ${this.componentCustomRulesURL} stable/falco`
     }
   },
   async fetch ({ store, params }) {
@@ -102,6 +116,9 @@ export default {
   methods: {
     copy (text) {
       navigator.clipboard.writeText(text)
+    },
+    getComponentCustomRulesContent () {
+      this.$store.dispatch('getComponentCustomRulesContent', this.componentCustomRulesURL)
     }
   }
 }

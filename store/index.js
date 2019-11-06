@@ -1,6 +1,8 @@
 export const state = () => ({
   components: [],
   component: {},
+  componentCustomRulesURL: '',
+  componentCustomRulesContent: '',
   vendor: {},
   vendorComponents: [],
   selectedCategories: []
@@ -27,6 +29,10 @@ export const mutations = {
   },
   component (state, component) {
     state.component = component
+    state.componentCustomRulesURL = `${process.env.API_URL}/resources/${component.id}/custom-rules.yaml`
+  },
+  componentCustomRulesContent (state, componentCustomRulesContent) {
+    state.componentCustomRulesContent = componentCustomRulesContent
   },
   vendor (state, vendor) {
     state.vendor = vendor
@@ -57,6 +63,11 @@ export const actions = {
     const component = await this.$services.contentService.getComponent(id)
 
     commit('component', component)
+  },
+  async getComponentCustomRulesContent ({ commit }, url) {
+    const componentCustomRulesContent = await this.$services.contentService.getComponentCustomRulesContent(url)
+
+    commit('componentCustomRulesContent', componentCustomRulesContent)
   },
   async getVendor ({ commit }, id) {
     const { vendor, vendorComponents } = await this.$services.contentService.getVendor(id)
