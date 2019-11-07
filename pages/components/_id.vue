@@ -28,7 +28,7 @@
             <h6 class="title">
               Manual install
             </h6>
-            <b-button v-b-modal.manual-install-modal variant="info" @click="getComponentCustomRulesContent">
+            <b-button v-b-modal.manual-install-modal variant="info">
               YAML
             </b-button>
           </div>
@@ -103,9 +103,14 @@ export default {
   computed: {
     ...mapState({
       component: state => state.component,
-      componentCustomRulesURL: state => state.componentCustomRulesURL,
-      componentCustomRulesContent: state => state.componentCustomRulesContent
+      componentCustomRulesURL: state => state.componentCustomRulesURL
     }),
+    componentCustomRulesContent () {
+      return this.component.rules
+        .filter(x => x.raw != null)
+        .map(x => x.raw)
+        .join('\n')
+    },
     installInstructions () {
       return `helm upgrade falco -f ${this.componentCustomRulesURL} stable/falco`
     }
@@ -116,9 +121,6 @@ export default {
   methods: {
     copy (text) {
       navigator.clipboard.writeText(text)
-    },
-    getComponentCustomRulesContent () {
-      this.$store.dispatch('getComponentCustomRulesContent', this.componentCustomRulesURL)
     }
   }
 }

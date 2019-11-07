@@ -13,11 +13,6 @@ export default class ContentService {
     return { ...result.data, vendor: { id: result.data.vendor.toLowerCase(), name: result.data.vendor } }
   }
 
-  async getComponentCustomRulesContent (url) {
-    const result = await this.httpClient.get(url)
-    return result.data
-  }
-
   async getVendors () {
     const result = await this.httpClient.get('/vendors')
     return result.data
