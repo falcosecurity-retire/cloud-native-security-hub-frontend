@@ -1,6 +1,7 @@
 export const state = () => ({
   components: [],
   component: {},
+  componentCustomRulesURL: '',
   vendor: {},
   vendorComponents: [],
   selectedCategories: []
@@ -27,6 +28,7 @@ export const mutations = {
   },
   component (state, component) {
     state.component = component
+    state.componentCustomRulesURL = `${process.env.API_URL}/resources/${component.id}/custom-rules.yaml`
   },
   vendor (state, vendor) {
     state.vendor = vendor
