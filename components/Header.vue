@@ -21,7 +21,7 @@
       <b-row class="heroContent" align-v="center">
         <b-col sm="12" md="6">
           <h2 class="title">
-            Share and find the best resources to secure Cloud Native components
+            Discover and share Kubernetes security best practices and configurations
           </h2>
         </b-col>
         <b-col sm="12" md="6">
