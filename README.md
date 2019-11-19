@@ -1,36 +1,33 @@
-# Cloud Native Security Hub - Frontend
+# Cloud Native Security Hub
 
-## Build Setup
+![last commit](https://flat.badgen.net/github/last-commit/falcosecurity/cloud-native-security-hub-frontend?icon=github) ![licence](https://flat.badgen.net/github/license/falcosecurity/cloud-native-security-hub-frontend)
 
-``` bash
-# recreate dependencies
-$ npm install
+Cloud Native Security Hub is a platform for discovering and sharing rules and
+configurations for cloud native security tools.
 
-# install dependencies
-$ npm ci
+This repository contains the frontend code who drives https://securityhub.dev site
 
-# start dev server with hot reload at localhost:3000
-$ npm start
+## Usage
 
-# run lint and auto fix issues
-$ npm run lint:fix
+This code requires a recent NodeJS version (12.10) and it uses [NuxtJS](https://nuxtjs.org)
+as Javascript framework.
 
-# run unit tests watching for changes since the last commit
-$ npm run test # You can then press 'a' to run all tests and 'u' to update snapshots
+### Configuration
 
-# update unit test snapshots
-$ npm run test:unit:updateSnapshot
+You can configure the backend endpoint where requesting security resources:
 
-# run unit test with coverage
-$ npm run test:unit:coverage
+* `API_URL`: API Backend endpoint URL
 
-# run e2e test
-$ npm run test:e2e
+### Start a development application
 
-# run unit test headless
-$ npm run test:e2e:headless
+Like others NuxtJS applications, just type:
 
-# build for production and launch server
-$ npm run build
-$ npm run serve
 ```
+$ npm start
+```
+
+And then, go to `http://localhost:3000` and enjoy the development process.
+
+## Contributing
+
+Contributors are welcome!
