@@ -61,6 +61,7 @@
         </b-col>
       </b-row>
     </b-container>
+    <Footer />
   </div>
 </template>
 
@@ -69,6 +70,7 @@ import { mapState } from 'vuex'
 import Prism from 'vue-prismjs'
 import Markdown from '@/components/Markdown'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import { getCanonicalForComponent } from '@/infrastructure/Canonical'
 import 'prismjs/themes/prism-tomorrow.css'
 
@@ -76,7 +78,8 @@ export default {
   components: {
     Markdown,
     Header,
-    Prism
+    Prism,
+    Footer
   },
   head () {
     return {
@@ -121,6 +124,8 @@ export default {
 <style scoped lang="scss">
 .content {
   margin-top: 2rem;
+  margin-bottom: 2rem;
+  min-height: calc(100vh - 140px - 56px - 32px); // 100 - footer - header - headerMargin
 }
 .box {
   border-radius: 8px;
