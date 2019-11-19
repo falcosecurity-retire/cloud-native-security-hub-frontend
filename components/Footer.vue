@@ -2,7 +2,7 @@
   <footer class="footer">
     <b-container>
       <b-row align-h="end">
-        <b-col sm="12" md="2">
+        <b-col sm="12" md="4">
           <section>
             <h4>About SecurityHub</h4>
             <ul>
@@ -29,7 +29,7 @@
 <style scoped lang="scss">
   .footer {
     padding-top: 15px;
-    height: 140px;
+    height: 160px;
     width: 100%;
     background-color: #253746;
     color: #eef3f3;
