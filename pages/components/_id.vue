@@ -34,31 +34,31 @@
           </div>
           <div class="box">
             <div v-if="component.website" class="website">
-              <h6 class="title">
+              <h4 class="title">
                 Website
-              </h6>
+              </h4>
               <b-link :href="component.website">
                 {{ component.website }}
               </b-link>
             </div>
             <div v-if="component.vendor" class="vendor">
-              <h6 class="title">
+              <h4 class="title">
                 Vendor
-              </h6>
+              </h4>
               <b-link :to="`/vendors/${component.vendor.id}`">
                 {{ component.vendor.name }}
               </b-link>
             </div>
             <div v-if="component.keywords.length > 0" class="keywords">
-              <h6 class="title">
+              <h4 class="title">
                 Keywords
-              </h6>
+              </h4>
               <span v-for="keyword in component.keywords" :key="keyword" class="keyword">{{ keyword }}</span>
             </div>
             <div v-if="component.maintainers.length > 0" class="maintainers">
-              <h6 class="title">
+              <h4 class="title">
                 Maintainers
-              </h6>
+              </h4>
               <div v-for="maintainer in component.maintainers" :key="maintainer.link" class="maintainer">
                 <b-link :href="`${maintainer.link}`">
                   {{ maintainer.name }}
@@ -143,8 +143,7 @@ export default {
   .title {
     margin: 1rem 0px 0px 0px;
     color: #2F3F50;
-    padding-bottom: 0.2rem;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 0.2rem;
   }
   .install-instructions {
     width: 100%;

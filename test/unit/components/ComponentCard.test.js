@@ -15,7 +15,6 @@ describe('ComponentCard', () => {
 
   it('shows component data', () => {
     expect(wrapper.find('.link').attributes().to).toEqual('/components/' + component.id)
-    expect(wrapper.find('.name').text()).toEqual(component.name)
     expect(wrapper.find('.image').attributes().src).toEqual(component.icon)
     expect(wrapper.find('.description').text()).toEqual(component.shortDescription)
   })

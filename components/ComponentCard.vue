@@ -3,15 +3,6 @@
     <b-card class="component my-1" header-bg-variant="transparent">
       <div slot="header" class="header">
         <b-card-img-lazy class="image" :src="component.icon" :alt="component.name" />
-        <div class="name">
-          {{ component.name }}
-        </div>
-        <!-- Vendors currently deactivated from the front-end -->
-        <b-link v-if="component.vendor && component.vendor.name && false" :to="`/vendors/${component.vendor.id}`" class="link">
-          <div class="vendor">
-            by <span class="vendorName">{{ component.vendor.name }}</span>
-          </div>
-        </b-link>
       </div>
       <div class="description">
         {{ component.shortDescription }}
@@ -62,18 +53,6 @@ export default {
       display:block;
       margin:auto;
     }
-    .name {
-      color: #415564;
-      margin-top: 0.5rem;
-      font-size: 1rem;
-    }
-    .vendor {
-      font-size: .75rem;
-      font-weight: 600;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 
   .card-body {
@@ -82,14 +61,13 @@ export default {
     .description {
       max-height: 100%;
       overflow: hidden;
-      font-size: 0.8rem;
     }
   }
 
   .card-footer {
     font-size: 0.8rem;
     text-align: right;
-    padding: 0;
+    padding: 0.2rem;
   }
 }
 </style>
