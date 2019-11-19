@@ -9,7 +9,7 @@ This repository contains the frontend code who drives https://securityhub.dev si
 
 ## Usage
 
-This code requires a recent NodeJS version (12.10) and it uses [NuxtJS](https://nuxtjs.org)
+This code requires a recent NodeJS version (12.13) and it uses [NuxtJS](https://nuxtjs.org)
 as Javascript framework.
 
 ### Configuration
