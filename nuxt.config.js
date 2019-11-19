@@ -4,12 +4,12 @@ require('dotenv').config()
 export default {
   mode: 'universal',
   head: {
-    titleTemplate: '%s - ' + 'Cloud Native Security Hub',
-    title: 'Cloud Native Security Hub',
+    titleTemplate: '%s | Cloud Native Security Hub',
+    title: 'Security Resources',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Discover and share our awesome security tools' }
+      { hid: 'description', name: 'description', content: 'Discover and share Kubernetes security best practices and configurations' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

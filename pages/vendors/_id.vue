@@ -46,7 +46,7 @@ export default {
   },
   head () {
     return {
-      title: `${this.vendor.name} in cloud native security hub`,
+      title: this.vendor.name,
       meta: [
         { hid: 'description', name: 'description', content: this.vendor.shortDescription }
       ],

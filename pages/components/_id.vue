@@ -80,7 +80,7 @@ export default {
   },
   head () {
     return {
-      title: `${this.component.name} in cloud native security hub`,
+      title: `${this.component.name} Falco Rules`,
       meta: [
         { hid: 'description', name: 'description', content: this.component.shortDescription }
       ],
