@@ -41,14 +41,6 @@
                 {{ component.website }}
               </b-link>
             </div>
-            <div v-if="component.vendor" class="vendor">
-              <h4 class="title">
-                Vendor
-              </h4>
-              <b-link :to="`/vendors/${component.vendor.id}`">
-                {{ component.vendor.name }}
-              </b-link>
-            </div>
             <div v-if="component.keywords.length > 0" class="keywords">
               <h4 class="title">
                 Keywords
