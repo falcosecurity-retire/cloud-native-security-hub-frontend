@@ -5,6 +5,8 @@
       <b-row>
         <b-col lg="8" sm="12">
           <markdown :content="component.description" />
+
+          <h2>Rules</h2>
           <prism language="yaml" :plugins="['show-language', 'copy-to-clipboard']" :code="componentCustomRulesContent" />
         </b-col>
         <b-col tag="aside" lg="4" sm="12">
