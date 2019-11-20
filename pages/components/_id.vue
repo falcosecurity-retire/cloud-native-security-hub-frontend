@@ -2,12 +2,10 @@
   <div>
     <Header />
     <b-container class="content">
-      <b-modal id="manual-install-modal" :title="component.name" ok-only size="xl" :lazy="true">
-        <prism language="yaml" :plugins="['show-language', 'copy-to-clipboard']" :code="componentCustomRulesContent" />
-      </b-modal>
       <b-row>
         <b-col lg="8" sm="12">
           <markdown :content="component.description" />
+          <prism language="yaml" :plugins="['show-language', 'copy-to-clipboard']" :code="componentCustomRulesContent" />
         </b-col>
         <b-col tag="aside" lg="4" sm="12">
           <div class="box">
@@ -25,12 +23,6 @@
               :value="installInstructions"
               @click="copy(installInstructions)"
             />
-            <h6 class="title">
-              Manual install
-            </h6>
-            <b-button v-b-modal.manual-install-modal variant="info">
-              YAML
-            </b-button>
           </div>
           <div class="box">
             <div v-if="component.website" class="website">
