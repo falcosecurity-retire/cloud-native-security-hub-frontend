@@ -2,7 +2,6 @@
   "name": "cloud-native-security-hub",
   "version": "1.0.0",
   "description": "Cloud Native Security Hub",
-  "author": "Nacho García",
   "private": true,
   "scripts": {
     "build": "nuxt build",
