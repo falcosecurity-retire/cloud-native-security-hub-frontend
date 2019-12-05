@@ -13,6 +13,11 @@ export default class ContentService {
     return { ...result.data, vendor: { id: result.data.vendor.toLowerCase(), name: result.data.vendor } }
   }
 
+  async getComponentByVersion (id, version) {
+    const result = await this.httpClient.get(`/resources/${id}/version/${version}`)
+    return { ...result.data, vendor: { id: result.data.vendor.toLowerCase(), name: result.data.vendor } }
+  }
+
   async getVendors () {
     const result = await this.httpClient.get('/vendors')
     return result.data

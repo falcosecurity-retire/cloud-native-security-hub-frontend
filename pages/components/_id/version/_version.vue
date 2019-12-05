@@ -75,7 +75,7 @@ import Prism from 'vue-prismjs'
 import Markdown from '@/components/Markdown'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { getCanonicalForComponent } from '@/infrastructure/Canonical'
+import { getCanonicalForComponentAndVersion } from '@/infrastructure/Canonical'
 import 'prismjs/themes/prism-tomorrow.css'
 
 export default {
@@ -87,14 +87,14 @@ export default {
   },
   head () {
     return {
-      title: `${this.component.name} Falco Rules`,
+      title: `${this.component.name} Falco Rules version ${this.component.version}`,
       meta: [
         { hid: 'description', name: 'description', content: this.component.shortDescription }
       ],
       link: [
         {
           rel: 'canonical',
-          href: getCanonicalForComponent(this.component)
+          href: getCanonicalForComponentAndVersion(this.component)
         }
       ]
     }
@@ -115,7 +115,7 @@ export default {
     }
   },
   async fetch ({ store, params }) {
-    await store.dispatch('getComponent', params.id)
+    await store.dispatch('getComponentByVersion', params)
   },
   methods: {
     copy (text) {

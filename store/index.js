@@ -60,13 +60,20 @@ export const actions = {
 
     commit('component', component)
   },
+  async getComponentByVersion ({ commit }, { id, version }) {
+    console.log('ACTION')
+    console.log(id)
+    console.log(version)
+    const component = await this.$services.contentService.getComponentByVersion(id, version)
+
+    commit('component', component)
+  },
   async getVendor ({ commit }, id) {
     const { vendor, vendorComponents } = await this.$services.contentService.getVendor(id)
 
     commit('vendor', vendor)
     commit('vendorComponents', vendorComponents)
   },
-
   toggleCategory ({ commit, getters }, category) {
     if (getters.isSelectedCategory(category)) {
       commit('unSelectCategory', category)

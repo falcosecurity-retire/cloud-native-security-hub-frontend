@@ -42,4 +42,12 @@ describe('Content Service', () => {
 
     expect(result).toEqual({ vendor, vendorComponents: componentsResponse })
   })
+
+  it('gets a component by ID and version', async () => {
+    httpClient.onGet(`/resources/${component.id}/version/${component.version}`).reply(200, componentsResponse[0])
+
+    const result = await contentService.getComponentByVersion(component.id, component.version)
+
+    expect(result).toEqual(component)
+  })
 })

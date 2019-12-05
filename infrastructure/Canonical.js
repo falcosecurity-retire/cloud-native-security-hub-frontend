@@ -5,3 +5,7 @@ export function getCanonicalForVendor (vendor) {
 export function getCanonicalForComponent (component) {
   return `${process.env.BASE_URL}/components/${component.id}`
 }
+
+export function getCanonicalForComponentAndVersion (component) {
+  return `${process.env.BASE_URL}/components/${component.id}/${component.version}`
+}
