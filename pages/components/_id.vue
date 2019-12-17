@@ -49,7 +49,11 @@
               <h4 class="title">
                 Keywords
               </h4>
-              <span v-for="keyword in component.keywords" :key="keyword" class="keyword">{{ keyword }}</span>
+              <ul class="keywords">
+                <li v-for="keyword in component.keywords" :key="keyword" class="keyword">
+                  {{ keyword }}
+                </li>
+              </ul>
             </div>
             <div v-if="component.maintainers.length > 0" class="maintainers">
               <h4 class="title">
@@ -148,6 +152,11 @@ export default {
   }
   .install-instructions {
     width: 100%;
+  }
+  .keywords {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   .versions {
     list-style: none;
