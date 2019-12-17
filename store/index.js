@@ -30,6 +30,10 @@ export const mutations = {
     state.component = component
     state.componentCustomRulesURL = `${process.env.API_URL}/resources/${component.id}/custom-rules.yaml`
   },
+  componentByVersion (state, component) {
+    state.component = component
+    state.componentCustomRulesURL = `${process.env.API_URL}/resources/${component.id}/version/${component.version}/custom-rules.yaml`
+  },
   vendor (state, vendor) {
     state.vendor = vendor
   },
@@ -61,12 +65,9 @@ export const actions = {
     commit('component', component)
   },
   async getComponentByVersion ({ commit }, { id, version }) {
-    console.log('ACTION')
-    console.log(id)
-    console.log(version)
     const component = await this.$services.contentService.getComponentByVersion(id, version)
 
-    commit('component', component)
+    commit('componentByVersion', component)
   },
   async getVendor ({ commit }, id) {
     const { vendor, vendorComponents } = await this.$services.contentService.getVendor(id)
