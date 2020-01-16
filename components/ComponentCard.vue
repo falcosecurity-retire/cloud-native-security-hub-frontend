@@ -1,5 +1,5 @@
 <template>
-  <b-link :to="`/components/${component.id}`" class="link">
+  <b-link :to="detailUrl" class="link">
     <b-card class="component my-1" header-bg-variant="transparent">
       <div slot="header" class="header">
         <b-card-img-lazy class="image" :src="component.icon" :alt="component.name" />
@@ -7,8 +7,11 @@
       <div class="description">
         {{ component.shortDescription }}
       </div>
-      <div slot="footer" class="footer">
+      <div v-if="component.kind == 'FalcoRules'" slot="footer" class="footer">
         Falco rule <b-img-lazy src="~assets/images/falco.png" height="15" width="15" alt="falco icon" />
+      </div>
+      <div v-else-if="component.kind == 'OpenPolicyAgentPolicies'" slot="footer" class="footer">
+        OPA Policy <b-img-lazy src="~assets/images/opa.png" height="15" width="15" alt="opa icon" />
       </div>
     </b-card>
   </b-link>
@@ -20,6 +23,16 @@ export default {
     component: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    detailUrl () {
+      switch (this.component.kind) {
+        case 'OpenPolicyAgentPolicies':
+          return `/open-policy-agent-policies/${this.component.id}`
+        default: // FalcoRules
+          return `/falco-rules/${this.component.id}`
+      }
     }
   }
 }

@@ -27,9 +27,9 @@ describe('store', () => {
     })
 
     it('gets a component by ID', async () => {
-      await actions.getComponent.call(context, { commit }, component.id)
+      await actions.getComponent.call(context, { commit }, { kind: component.kind, id: component.id })
 
-      expect(context.$services.contentService.getComponent).toHaveBeenCalledWith(component.id)
+      expect(context.$services.contentService.getComponent).toHaveBeenCalledWith(component.kind, component.id)
       expect(commit).toHaveBeenCalledWith('component', component)
     })
 

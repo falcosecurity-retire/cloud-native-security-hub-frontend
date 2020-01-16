@@ -19,9 +19,9 @@ describe('Content Service', () => {
   })
 
   it('gets a component by ID', async () => {
-    httpClient.onGet(`/resources/${component.id}`).reply(200, componentsResponse[0])
+    httpClient.onGet(`/resources/${component.kind}/${component.id}`).reply(200, componentsResponse[0])
 
-    const result = await contentService.getComponent(component.id)
+    const result = await contentService.getComponent(component.kind, component.id)
 
     expect(result).toEqual(component)
   })
@@ -44,9 +44,9 @@ describe('Content Service', () => {
   })
 
   it('gets a component by ID and version', async () => {
-    httpClient.onGet(`/resources/${component.id}/version/${component.version}`).reply(200, componentsResponse[0])
+    httpClient.onGet(`/resources/${component.kind}/${component.id}/version/${component.version}`).reply(200, componentsResponse[0])
 
-    const result = await contentService.getComponentByVersion(component.id, component.version)
+    const result = await contentService.getComponentByVersion(component.kind, component.id, component.version)
 
     expect(result).toEqual(component)
   })

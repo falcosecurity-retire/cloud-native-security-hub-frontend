@@ -28,11 +28,11 @@ export const mutations = {
   },
   component (state, component) {
     state.component = component
-    state.componentCustomRulesURL = `${process.env.API_URL}/resources/${component.id}/custom-rules.yaml`
+    state.componentCustomRulesURL = `${process.env.API_URL}/resources/falco-rules/${component.id}/custom-rules.yaml`
   },
   componentByVersion (state, component) {
     state.component = component
-    state.componentCustomRulesURL = `${process.env.API_URL}/resources/${component.id}/version/${component.version}/custom-rules.yaml`
+    state.componentCustomRulesURL = `${process.env.API_URL}/resources/falco-rules/${component.id}/version/${component.version}/custom-rules.yaml`
   },
   vendor (state, vendor) {
     state.vendor = vendor
@@ -59,13 +59,13 @@ export const actions = {
       ...state.components.map(component => ({ ...component, type: 'components' }))
     ])
   },
-  async getComponent ({ commit }, id) {
-    const component = await this.$services.contentService.getComponent(id)
+  async getComponent ({ commit }, { kind, id }) {
+    const component = await this.$services.contentService.getComponent(kind, id)
 
     commit('component', component)
   },
-  async getComponentByVersion ({ commit }, { id, version }) {
-    const component = await this.$services.contentService.getComponentByVersion(id, version)
+  async getComponentByVersion ({ commit }, { kind, id, version }) {
+    const component = await this.$services.contentService.getComponentByVersion(kind, id, version)
 
     commit('componentByVersion', component)
   },

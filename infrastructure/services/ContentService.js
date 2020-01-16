@@ -8,13 +8,13 @@ export default class ContentService {
     return result.data.map(component => ({ ...component, vendor: { id: component.vendor.toLowerCase(), name: component.vendor } }))
   }
 
-  async getComponent (id) {
-    const result = await this.httpClient.get(`/resources/${id}`)
+  async getComponent (kind, id) {
+    const result = await this.httpClient.get(`/resources/${kind}/${id}`)
     return { ...result.data, vendor: { id: result.data.vendor.toLowerCase(), name: result.data.vendor } }
   }
 
-  async getComponentByVersion (id, version) {
-    const result = await this.httpClient.get(`/resources/${id}/version/${version}`)
+  async getComponentByVersion (kind, id, version) {
+    const result = await this.httpClient.get(`/resources/${kind}/${id}/version/${version}`)
     return { ...result.data, vendor: { id: result.data.vendor.toLowerCase(), name: result.data.vendor } }
   }
 

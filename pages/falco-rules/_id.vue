@@ -41,7 +41,7 @@
               </h4>
               <ul class="versions">
                 <li v-for="version in component.availableVersions" :key="version" :class="{current: version == component.version}">
-                  <b-link :to="`/components/${component.id}/version/${version}`" class="link">
+                  <b-link :to="`/falco-rules/${component.id}/version/${version}`" class="link">
                     {{ version }}
                   </b-link>
                 </li>
@@ -79,7 +79,7 @@ import Prism from 'vue-prismjs'
 import Markdown from '@/components/Markdown'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { getCanonicalForComponentAndVersion } from '@/infrastructure/Canonical'
+import { getCanonicalForComponent } from '@/infrastructure/Canonical'
 import 'prismjs/themes/prism-tomorrow.css'
 
 export default {
@@ -91,14 +91,14 @@ export default {
   },
   head () {
     return {
-      title: `${this.component.name} Falco Rules version ${this.component.version}`,
+      title: `${this.component.name} Falco Rules`,
       meta: [
         { hid: 'description', name: 'description', content: this.component.shortDescription }
       ],
       link: [
         {
           rel: 'canonical',
-          href: getCanonicalForComponentAndVersion(this.component)
+          href: getCanonicalForComponent(this.component)
         }
       ]
     }
@@ -119,7 +119,7 @@ export default {
     }
   },
   async fetch ({ store, params }) {
-    await store.dispatch('getComponentByVersion', params)
+    await store.dispatch('getComponent', { kind: 'falco-rules', id: params.id })
   },
   methods: {
     copy (text) {
