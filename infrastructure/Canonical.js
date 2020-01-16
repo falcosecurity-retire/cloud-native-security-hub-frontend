@@ -3,9 +3,19 @@ export function getCanonicalForVendor (vendor) {
 }
 
 export function getCanonicalForComponent (component) {
-  return `${process.env.BASE_URL}/components/${component.id}`
+  switch (component.kind) {
+    case 'OpenPolicyAgentPolicies':
+      return `${process.env.BASE_URL}/open-policy-agent-policies/${component.id}`
+    default: // FalcoRules
+      return `${process.env.BASE_URL}/falco-rules/${component.id}`
+  }
 }
 
 export function getCanonicalForComponentAndVersion (component) {
-  return `${process.env.BASE_URL}/components/${component.id}/${component.version}`
+  switch (component.kind) {
+    case 'OpenPolicyAgentPolicies':
+      return `${process.env.BASE_URL}/open-policy-agent-policies/${component.id}/version/${component.version}`
+    default: // FalcoRules
+      return `${process.env.BASE_URL}/falco-rules/${component.id}/version/${component.version}`
+  }
 }

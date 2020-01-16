@@ -6,26 +6,10 @@
         <b-col lg="8" sm="12">
           <markdown :content="component.description" />
 
-          <h2>Rules</h2>
-          <prism language="yaml" :plugins="['show-language', 'copy-to-clipboard']" :code="componentCustomRulesContent" />
+          <h2>Policies</h2>
+          <prism language="go" :plugins="['show-language', 'copy-to-clipboard']" :code="componentCustomPoliciesContent" />
         </b-col>
         <b-col tag="aside" lg="4" sm="12">
-          <div class="box">
-            <h4 class="title">
-              Installing
-            </h4>
-            <h6 class="title">
-              Install using Helm
-            </h6>
-            <b-form-input
-              v-b-tooltip.click.blur.v-primary
-              title="Copied to your clipboard!"
-              class="install-instructions"
-              readonly
-              :value="installInstructions"
-              @click="copy(installInstructions)"
-            />
-          </div>
           <div class="box">
             <div v-if="component.website" class="website">
               <h4 class="title">
@@ -41,7 +25,7 @@
               </h4>
               <ul class="versions">
                 <li v-for="version in component.availableVersions" :key="version" :class="{current: version == component.version}">
-                  <b-link :to="`/components/${component.id}/version/${version}`" class="link">
+                  <b-link :to="`/open-policy-agent-policies/${component.id}/version/${version}`" class="link">
                     {{ version }}
                   </b-link>
                 </li>
@@ -91,7 +75,7 @@ export default {
   },
   head () {
     return {
-      title: `${this.component.name} Falco Rules`,
+      title: `${this.component.name} Open Policy Agent Policies`,
       meta: [
         { hid: 'description', name: 'description', content: this.component.shortDescription }
       ],
@@ -105,26 +89,17 @@ export default {
   },
   computed: {
     ...mapState({
-      component: state => state.component,
-      componentCustomRulesURL: state => state.componentCustomRulesURL
+      component: state => state.component
     }),
-    componentCustomRulesContent () {
-      return this.component.rules
+    componentCustomPoliciesContent () {
+      return this.component.policies
         .filter(x => x.raw != null)
         .map(x => x.raw)
         .join('\n')
-    },
-    installInstructions () {
-      return `helm upgrade falco -f ${this.componentCustomRulesURL} stable/falco`
     }
   },
   async fetch ({ store, params }) {
-    await store.dispatch('getComponent', params.id)
-  },
-  methods: {
-    copy (text) {
-      navigator.clipboard.writeText(text)
-    }
+    await store.dispatch('getComponent', { kind: 'open-policy-agent-policies', id: params.id })
   }
 }
 </script>
