@@ -33,14 +33,14 @@
     <b-list-group v-if="searchResults.length > 0" class="resultList">
       <b-list-group-item
         v-for="(result, index) in searchResults"
-        :key="result.id + result.type"
+        :key="result.id + result.kind"
         class="result"
         :active="index === selectedResult"
-        :to="{ name: `${result.type}-id`, params: { id: result.id } }"
+        :to="{ name: routeNameForResource(result), params: { id: result.id } }"
       >
         {{ result.name }}
-        <b-badge class="type float-right" variant="secondary" pill>
-          {{ result.type }}
+        <b-badge class="kind float-right" variant="secondary" pill>
+          {{ badgeText(result) }}
         </b-badge>
       </b-list-group-item>
     </b-list-group>
@@ -106,9 +106,18 @@ export default {
       event.preventDefault()
       if (this.selectedResult >= 0 && this.searchResults[this.selectedResult]) {
         const result = this.searchResults[this.selectedResult]
-        this.$router.push({ name: `${result.type}-id`, params: { id: result.id } })
+        const name = this.routeNameForResource(result)
+        this.$router.push({ name, params: { id: result.id } })
       } else {
         this.selectAutoCompleteOption()
+      }
+    },
+    routeNameForResource (result) {
+      switch (result.kind) {
+        case 'OpenPolicyAgentPolicies':
+          return 'open-policy-agent-policies-id'
+        case 'FalcoRules':
+          return 'falco-rules-id'
       }
     },
     selectAutoCompleteOption () {
@@ -121,6 +130,14 @@ export default {
     updateSearchTextWithResult (i) {
       if (this.searchResults.length) {
         this.searchText = this.searchResults[i].name
+      }
+    },
+    badgeText (result) {
+      switch (result.kind) {
+        case 'OpenPolicyAgentPolicies':
+          return 'Open Policy Agent Policies'
+        case 'FalcoRules':
+          return 'Falco Rules'
       }
     }
   }

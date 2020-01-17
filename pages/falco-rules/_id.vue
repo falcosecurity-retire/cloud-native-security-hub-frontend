@@ -109,6 +109,8 @@ export default {
       componentCustomRulesURL: state => state.componentCustomRulesURL
     }),
     componentCustomRulesContent () {
+      if (!this.component.rules) { return '' }
+
       return this.component.rules
         .filter(x => x.raw != null)
         .map(x => x.raw)

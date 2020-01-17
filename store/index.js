@@ -56,7 +56,7 @@ export const actions = {
   },
   initSearchEngine ({ state }) {
     this.$services.searchService.initSearchEngine([
-      ...state.components.map(component => ({ ...component, type: 'components' }))
+      ...state.components
     ])
   },
   async getComponent ({ commit }, { kind, id }) {
