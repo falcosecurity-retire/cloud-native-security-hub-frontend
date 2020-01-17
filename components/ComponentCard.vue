@@ -8,10 +8,10 @@
         {{ component.shortDescription }}
       </div>
       <div v-if="component.kind == 'FalcoRules'" slot="footer" class="footer">
-        Falco rule <b-img-lazy src="~assets/images/falco.png" height="15" width="15" alt="falco icon" />
+        Falco <b-img-lazy src="~assets/images/falco.png" height="15" width="15" alt="Falco icon" />
       </div>
       <div v-else-if="component.kind == 'OpenPolicyAgentPolicies'" slot="footer" class="footer">
-        OPA Policy <b-img-lazy src="~assets/images/opa.png" height="15" width="15" alt="opa icon" />
+        Open Policy Agent <b-img-lazy src="~assets/images/opa.png" height="15" width="15" alt="Open Policy Agent icon" />
       </div>
     </b-card>
   </b-link>
