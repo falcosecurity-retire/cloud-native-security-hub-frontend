@@ -92,6 +92,8 @@ export default {
       component: state => state.component
     }),
     componentCustomPoliciesContent () {
+      if (!this.component.policies) { return '' }
+
       return this.component.policies
         .filter(x => x.raw != null)
         .map(x => x.raw)

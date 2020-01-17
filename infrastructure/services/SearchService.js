@@ -4,7 +4,7 @@ export default class SearchService {
   constructor () {
     this.searchEngine = new MiniSearch({
       fields: ['name', 'shortDescription', 'keywords', 'maintainers'],
-      storeFields: ['id', 'name', 'type'],
+      storeFields: ['id', 'name', 'kind'],
       searchOptions: {
         boost: { name: 2 },
         fuzzy: 0.2
