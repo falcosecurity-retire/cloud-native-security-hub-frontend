@@ -1,0 +1,15 @@
+.git
+.nuxt
+tmp
+.circleci
+coverage
+test
+README.md
+Dockerfile*
+.gitignore
+cache
+cypress.json
+jest.config.js
+.gitlab-ci.yml
+.editorconfig
+README.md
