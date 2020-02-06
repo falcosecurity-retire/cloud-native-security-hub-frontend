@@ -60,7 +60,7 @@
                 Maintainers
               </h4>
               <div v-for="maintainer in component.maintainers" :key="maintainer.link" class="maintainer">
-                <b-link :href="`${maintainer.link}`">
+                <b-link :href="`${maintainer.link}`" target="_blank">
                   {{ maintainer.name }}
                 </b-link>
               </div>
