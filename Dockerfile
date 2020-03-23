@@ -6,13 +6,14 @@ RUN mkdir -p /usr/src/nuxt-app
 WORKDIR /usr/src/nuxt-app
 
 COPY . ./
-# RUN npm ci --no-progress Uncomment if we want to install modules with docker instead of using local ones
+RUN npm ci --no-progress
 
 ENV NODE_ENV production
 
-RUN npm run build && \
-  npm prune --production
+RUN npm run build && npm prune --production
+
 # ---
+
 FROM node:12.14-alpine
 
 ENV NODE_ENV production

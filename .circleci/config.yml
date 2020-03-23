@@ -5,10 +5,11 @@ variables:
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
 jobs:
-  install:
+  dependencies:
     docker:
-      - image: node:12.6.0
+      - image: node:12.16.1
     steps:
+      - checkout
       - run: npm ci
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -16,73 +17,50 @@ jobs:
             - ./node_modules
             - cache/Cypress
 
-  build:node:
+  build:app:
     docker:
-      - image: node:12.6.0
+      - image: node:12.16.1
     working_directory: ~/circleci-demo-workflows
     steps:
+      - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run: npm ci
       - run: npm run build
-      - save_cache:
-          key: dependency-build-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/.nuxt
 
   test:unit:
     docker:
-      - image: node:12.6.0
+      - image: node:12.16.1
     working_directory: ~/circleci-demo-workflows
     steps:
+      - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run: npm ci
       - run: npm run test:unit:coverage
       - store_test_results:
           path: coverage/clover.xml
-
-  test:acceptance:
-    docker:
-      - image: node:12.6.0
-    working_directory: ~/circleci-demo-workflows
-    steps:
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-      - run: npm run test:acceptance
-      - store_artifacts:
-          path:
-            - test/e2e/videos/**/*.mp4
-      - store_artifacts:
-          path:
-            - test/e2e/videos/**/*.mp4
 
   build:docker:
     docker:
       - image: docker:stable
     working_directory: ~/circleci-demo-workflows
     steps:
-      - restore_cache:
-          key: dependency-build-{{ .Environment.CIRCLE_SHA1 }}
+      - checkout
+      - setup_remote_docker
       - run: docker build -t web .
-
-  deploy:
-    docker:
-      - image: alpine
-    steps:
-      - run: echo "deploy"
 
 workflows:
   version: 2
-  build-and-deploy:
+  build:
     jobs:
-      - install
-      - build:node
-      - test:unit
-      - test:acceptance:
+      - dependencies
+      - build:app:
           requires:
-            - build:node
+            - dependencies
+      - test:unit:
+          requires:
+            - build:app
       - build:docker:
           requires:
-            - build:node
-      - deploy:
-          requires:
-            - build:docker
+            - test:unit
