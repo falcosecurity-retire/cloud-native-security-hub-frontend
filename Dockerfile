@@ -1,4 +1,4 @@
-FROM node:12.14 as builder
+FROM node:12.16.1 as builder
 
 ENV NODE_ENV development
 
@@ -14,7 +14,7 @@ RUN npm run build && npm prune --production
 
 # ---
 
-FROM node:12.14-alpine
+FROM node:12.16.1-alpine
 
 ENV NODE_ENV production
 
